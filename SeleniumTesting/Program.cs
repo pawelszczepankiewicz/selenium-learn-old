@@ -1,10 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace SeleniumTesting
 {
@@ -14,6 +11,11 @@ namespace SeleniumTesting
         {
             IWebDriver driver = new ChromeDriver();
 
+            Start(driver);
+        }
+
+        public static void Start(IWebDriver driver)
+        {
             driver.Manage().Window.Maximize();
 
             driver.Navigate().GoToUrl("http://test.lovi.pl/");
@@ -28,5 +30,11 @@ namespace SeleniumTesting
 
             driver.FindElement(By.XPath("//button[@class='btn-primary']")).Click();
         }
+
+        public static void End(IWebDriver driver)
+        {
+            driver.Close();
+        }
+
     }
 }
