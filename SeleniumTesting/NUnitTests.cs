@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.Collections.Generic;
 
 namespace SeleniumTesting
 {
@@ -29,6 +30,14 @@ namespace SeleniumTesting
             WaitThree(driver);
 
             driver.FindElement(By.Name("q")).SendKeys("zęby" + Keys.Enter);
+
+            IList<IWebElement> elements = driver.FindElements(By.ClassName("title"));
+            foreach (IWebElement e in elements)
+            {
+                System.Console.WriteLine(e.Text);
+
+                if (e.Text == "WybielanieX") Assert.Fail();
+            }
         }
 
         [TearDown]
